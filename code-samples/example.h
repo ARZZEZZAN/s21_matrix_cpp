@@ -5,7 +5,7 @@
 
 class S21Matrix {
 private:
-    //attributes
+    // attributes
     int _rows, _cols;                                           // rows and columns attributes
     double **_p;                                                // pointer to the memory where the matrix will be allocated
 
@@ -16,7 +16,7 @@ public:
     S21Matrix(S21Matrix&& o);                                   // move cnstructor
     ~S21Matrix();                                               // destructor
 
-    //some operators overloads
+    // some operators overloads
     S21Matrix& operator=(const S21Matrix& o);                   // assignment operator overload
     int& operator()(int row, int col);                          // index operator overload
     int& operator()(int row, int col) const;
@@ -25,7 +25,7 @@ public:
     S21Matrix& operator-=(const S21Matrix& o);
     S21Matrix operator-(const S21Matrix& o);
     
-    //some public methods
+    // some public methods
     bool eq_matrix(const S21Matrix& o);
     void sum_matrix(const S21Matrix& o); 
     void sub_matrix(const S21Matrix& o);
