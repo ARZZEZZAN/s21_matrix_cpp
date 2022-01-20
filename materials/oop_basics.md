@@ -1,30 +1,34 @@
-# Основные положения ООП
+# OOP basics
 
-Объектно-ориентировнное программирование - методология программирования, основанная на представлении программы в виде совокупности взаимодействующих информационных объектов, принадлежащих определенным классам, выстроенным в иерархическую структуру. 
+Object-oriented programming is a programming methodology based on the concept of a program as a set of interacting information objects belonging to specific classes structured in a hierarchical way.
 
-**Класс** - множество некоторых объектов, имеющие один и тот же набор свойств и методов, определенных над ними. 
+**A class** is a set of some objects that have the same defined properties and methods performed on them.
 
-**Объект** - конкретный экземпляр класса.
+**An object** is a specific instance of a class.
 
-Практически любая часть реального мира может быть представлена некоторой совокупностью формализованных объектов, описывающих эту часть с той точки зрения, которая необходима программисту. Такой подход к разработке приложения и называется объектно-ориентированным. Место, в котором вы сейчас находитесь, также является некоторым объектом класса "место". При этом если данное место рассматривается в рамках приложения, предоставляющего справочную информацию о различных городских заведениях, достаточно ассоциировать с данным объектом только свойства соотвествующие адресу и некоторому типу заведения, набору предоставляемых услуг и т. д. Если же данное место учитывается в рамках приложения отрисовки планарной двумерной карты, потребуются несколько другие свойства, например геопозиция и размеры. Если же требуется визуализировать данное место на экране в трехмерном виде, потребуется перечень достаточно точных описаний визуальных характеристик объектов, находящихся в этом месте, их расположение и размеры относительно друг друга, источники освещения и т. д. Таким образом, один и тот же объект реального или абстрактного мира может быть представлен или смоделирован на программном уровне совершенно различными способами, сохраня только те свойства, которые необходимы. Именно набор этих свойств и определяет в большей степени сами классы. 
+Almost any part of the real world can be represented by some set of formalised objects describing that part from the perspective of the programmer. This approach of application development is called object-oriented. The place you are currently in is also some object of the class "place". If this place is considered as part of an application that provides reference information on various city establishments, it is sufficient to associate with a given object only the properties corresponding to the address and some type of establishment, range of provided services, etc.
+If this place is considered as part of a 2D planar map drawing application, then some different properties will be required, such as geoposition and dimensions. If you need to visualise the place in three dimensions, you will need a list of quite precise descriptions of the visual characteristics of the objects in the place, their position and size in relation to each other, lighting sources, etc. So, the same object of the real or abstract world can be represented or modelled in completely different ways at the programming level, keeping only the necessary properties. This set of properties is what mostly defines the classes themselves.
 
-Основные принципы ООП:
+Main principals of the OOP:
 
-- Абстракция - выделение того минимального количества характеристик объекта, которые достаточно полно определяют объект с точки зрения разрабатываемой программы.
+- Abstraction: the selection of that few characteristics of an object that sufficiently define it in terms of the program that is being developed.
 
-- Инкапсуляция - сокрытие реализации внутри класса и предоставление внешнего интерфейса для взаимодействия с классом.
+- Encapsulation: hiding an implementation within a class and providing an external interface to interact with it.
 
-- Наследование - иерархическое порождение новых классов на основе уже существующих, полностью или частично переиспользующих реализацию родительского класса.
+- Inheritance: the hierarchical generation of new classes based on an existing class, fully or partially reusing the implementation of the parent class.
 
-- Полиморфизм - возможность разных классов, реализующих один интерфейс, иметь разную реаилзацию.
+- Polymorphism: the ability for different classes implementing the same interface to have different implementations.
 
-Исходя из принципа абстракции, объектно-ориентированное программирование приводит к более "естественной" декомпозиции и выделению абстракций. Например, матрица. В случае структурного подхода необходимо определить структуру struct matrix и все необходимые функции для работы с этой структурой. В то же самое время, в методологии ООП данная задача решается иначе: создается новый класс объектов - матрица, с которым связаны некоторые поля и функции, называемые методами. При таком подходе, все характеристики матрицы инкапсулированы в некоторой реализации класса и могут быть использованы через сам объект матрицы во время его существования в программе. 
+Based on the principle of abstraction, object-oriented programming leads to a more "natural" decomposition and separation of abstractions. For example, a matrix. In the structured approach, you need to define the matrix structure `struct matrix` and all the necessary functions to work with it.
+The OOP methodology, on the other hand, solves this problem differently: it creates a new object class, a matrix, with which some fields and functions, called methods, are associated. With this approach, all the characteristics of a matrix are encapsulated in some implementation of the class and can be used through the matrix object itself while it exists in the program.
 
-# Обработка исключений
+# Exception handling
 
-В ООП отличается и подход к обработке исключений. В структурном программирование ключевой стратегией при обработке исключений явлись возвращаемые коды ошибок функций. Они постепенно всплывали в функцию main, которая по большей части должна была состоять из обработчиков ошибок в виде условных операторов разной вложенности. ООП же предлагает использовать систему исключений (exception). Exception это особый класс, который можно "выбрасывать" в случае возникновения ошибочной ситуации в программе. Выброшенное исключение автоматически прервет выполнение текущего метода и начнет "всплывать" стеку вызова до тех пор, пока не окажется в одной области видимости со специальным блоком try-catch. 
+The way exceptions are handled in the OOP is also different. In structured programming, the key strategy for handling exceptions was the return of the function error codes. They gradually floated to the main function, which for the most part had to consist of error handlers in the form of conditional statements of varying nesting.
+The OOP, however, offers to use an exception system. Exception is a special class that can be " thrown" when an error occurs in a program.
+The thrown exception will automatically terminate the execution of the current method and start "floating" the call stack until it is in the same scope as the special try-catch block.
 
-Например у нас есть следующий код:
+For example, we have the following code:
 
 ```cpp
 #include <iostream>
@@ -63,98 +67,102 @@ int main()
 }
 ```
 
-При этом есть возможность создавать пользовательские классы на основе базового класса exception, для того, чтобы различать типы исключений или передавать дополнительную информацию вместе с объектом исключения. Для этого можно создать свой класс исключений и унаследовать его от `std::exception`. 
+It is possible to create custom classes from the base exception class in order to distinguish between exception types or to pass additional information along with the exception object. To do this, you can create your own exception class and inherit it from `std::exception`.
 
-# Структура класса
+# Class structure
 
-В языке C++ классы напоминают структуры:
+In C++, classes look like structures:
 
 ```cpp
-class <имя класса> 
+class <class name> 
 {
-  <модификатор доступа>:
-      <атрибут или метод>
+  <access modifier>:
+      <attribute or method>
 };
 ```
 
-Однако вместо полей здесь атрибуты, определяемые как простые переменные. Так же, внутри класса можно опрелять методы - функции, имеющие доступ ко всем атрибутам класса. Методы и атрибуты неразрывно связаны с классом. Модификаторы доступа (public, protected и private) регулируют внешний доступ к методам и атрибутам класса: приватные атрибуты и методы доступны только изнутри класса, в то время как публичные - доступны из любой внешней функции или другого класса. Приватные атрибуты позволяют скрыть от пользователя реализацию внутренних полей и предоставить безопасные публичные методы доступа (accessor) и изменения (mutator). Обычно, для доступа к приватному атрибуту x, определяются публичные методы getX() - accessor и setX() - mutator.
+However, instead of fields, there are attributes defined as simple variables. You can also define methods within a class - functions that have access to all attributes of the class. Methods and attributes are inextricably linked to the class. Access modifiers (public, protected and private) govern external access to class methods and attributes: private attributes and methods are only accessible from within the class, while public ones are accessible from any external function or other class. Private attributes allow you to hide the implementation of internal fields from the user and provide secure public methods of access (accessor) and modification (mutator). Usually, to access the private attribute `x`, the public methods `getX()` - accessor and `setX()` - mutator are defined.
 
-Для непосредственного доступа к атрибутам или методам используется синтаксис, повторяющий синтакисис обращения к полям структуры. Например `myObject.myArgument` вернет значение атрибута `myArgument` из объекта `object`, а `myObject.myMethod()` выполнит метод `myMethod()` объекта `myObject`. В случае использования указателя на объект, используется аналогичный указателям на структуры синтаскис обращения к аргументам и методам. Например `myObjectPointer->myMethod()` вызовет метод `myMethod()` объекта, на который указывает `myObjectPointer`. 
+For direct access to attributes or methods, a syntax similar to the one for accessing the fields of a structure is used.
+For example, `myObject.myArgument` will return the value of `myArgument` attribute from the object `myObject`, and `myObject.myMethod()` will execute `myMethod()` of `myObject`.
+If a pointer to an object is used, a similar pointer to structure syntax is used for addressing arguments and methods.  For example, `myObjectPointer->myMethod()` will call the `myMethod()` of the object pointed to by `myObjectPointer`.
 
-У класса так же могут быть определены специальные методы, называемыми конструкторами и деструкторами. Они вызываются автоматически при создание и удалении объекта данного класса. В них выделяются и заполняются необходимые поля или же наоборот - освобождаются.
+A class can also have defined special methods, called constructors and destructors that are called automatically when an object of that class is created or deleted. They are used to select and fill the required fields or, alternatively, to empty them.
 
-Для того чтобы объявить конструктор, нужно указать метод с именем класса без типа возвращаемого значения, например:
+In order to declare a constructor, you need to specify a method with a class name without a return value type, for example:
 
 ```cpp
 Matrix();
 ```
 
-Деструктор объявляется схожим образом, но начинается с тильды:
+The destructor is declared in a similar way, but starts with a tilde:
 
 ```cpp
 ~Matrix();
 ```
 
-C++ позволяет создавать несколько конструкторов для одного класса с различным набором аргументов, при создании объектов данного класса будет вызван либо конструктор, соответствующий передаваемым аргументам, либо, если аргументы не были переданы, конструктор по умолчанию:
+C++ allows you to create multiple constructors for the same class with different sets of arguments. When creating objects of a given class, either the constructor corresponding to the passed arguments or, if no arguments have been passed, the default constructor will be called:
 
 ```cpp
-Matrix();               // конструктор по умолчанию
-Matrix(int n);          // конструктор с одним аргументом, например, он создает квадратную матрицу размером n на n
-Matrix(int n, int m);   // конструктор с двумя аргументами, например, он создает матрицу размером n на m
+Matrix();               // default constructor
+Matrix(int n);          // constructor with one argument, e.g. it creates a square matrix of size n by n
+Matrix(int n, int m);   // constructor with two arguments, e.g. it creates a matrix of size n by m
 ```
 
-Вызов этих конструкторов в коде программы:
+Calling these constructors in the program code:
 
 ```cpp
 int n = 4, m = 5;
-Matrix m1;               // конструктор по умолчанию
-Matrix m2(n);            // конструктор с одним аргументом, например, он создает квадратную матрицу размером n на n
-Matrix m3(n, m);         // конструктор с двумя аргументами, например, он создает матрицу размером n на m
+Matrix m1;               // default constructor 
+Matrix m2(n);            // constructor with one argument, e.g. it creates a square matrix of size n by n
+Matrix m3(n, m);        // constructor with two arguments, e.g. it creates a matrix of size n by m
+
 ```
 
-Не стоит пытаться вызвать метод конструктора повторно уже как обычный метод созданного объекта. Конструкторы используются только для создания нового объекта. 
+Do not try to re-call the constructor method as a regular method of the created object. Constructors are only used to create a new object.
 
-Для создания указателя на объект, используется ключевое слово `new`:
+Use `new` to create a pointer to an object:
 
 ```cpp
 Matrix* pM = new Matrix(4,5);
 ```
 
-Обратите внимание, что скобки с передаваемыми аргументами теперь ставятся после наименования класса, а не перменной. Для ручного удаления объекта, на который указывает `pM` можно воспользоваться ключевым словом `delete`:
+Note that brackets with passed arguments are now placed after the class name, not the variable. To manually delete an object pointed to by `pM` you can use `delete`:
 
 ```cpp
-delete pM;              // тут автоматически вызовется деструктор ~Matrix()
+delete pM;              // here the destructor ~Matrix() is automatically called 
 ```
 
-Если объект был создан не через new, а простым объявлением, то деструктор вызовется при выходе из области видимости, в которой была создана данная переменная:
+If the object was not created via new, but by simple declaration, the destructor will be called when it leaves the scope in which the variable was created:
 
 ```cpp
 int main() {
     Matrix m(4);
 
-    // Какие-то операции над матрицей, вызовы функций и методов...
+    // Some operations on the matrix, function and method calls...
 
-    return 0;           // тут автоматически вызовется деструктор
+    return 0;           // here the destructor is automatically called 
 }
 ```
 
-По мимо констурктора по умолчанию (конструктора с пустым набором входных параметров), есть еще два специальных конструктора: конструктор копирования и конструктор перемещения. Конструктор копирования предназначен для инициализации объекта путем копирования всех атрибутов другого объекта того же класса в новый объект. В качестве аргумента он содержит ссылку на копируемый объект. Конструктор перемещения выглядит почти так же, как и конструктор копирования, но ожидается, что он очистит атрибуты перемещаемого объекта. В качестве пеараметра он содержит двойную ссылку на перемещаемый объект. Конструктор перемещения обычно выполняется в те случаи, когда перемещаемый объект будет в скором времени уничтожен. Подробнее, можно посмотреть в примере в `code-samples`. Конструкторы копирования и перемещения имеют следующий вид:
+Besides the default constructor (a constructor with an empty set of input parameters), there are two special constructors: the copy constructor and the move constructor. The copy constructor is for initialising an object by copying all the attributes of another object of the same class into the new object. As an argument, it contains a reference to the object being copied. The move constructor looks very similar to the copy one, but it is expected to clear the attributes of the moved object. As a parameter, it contains a double reference to the object being moved. The move constructor is usually executed in cases where the moved object will soon be destroyed. For details, see the example in the `code-samples'. The copy and move constructors look as follows:
 
 ```cpp
-Matrix (Matrix&);       // конструктор копирования
-Matrix (Matrix&&);      // конструктор перемещения
+Matrix (Matrix&);       // copy constructor
+Matrix (Matrix&&);      // move constructor
 ```
 
-В C++, как и в C, помимо обычных файлов с кодом (разрещение .cpp) есть еще и заголовочные файлы (разрешение .h). Напоминаем, что код из заголовочных файлов автоматически копируется в исходный код на этапе препроцессирования при каждой встрече компилятором директивы `#include`. Как прежде, заголовочные файлы служат для объявления имен, на которые будут ссылаться другие участки кода. Масштабируя это понятие на объектно-ориентированную парадигму, получаем, что в наиболее частом случае в заголовочном файле объявляется класс и его методы. Заголовочные файл не должны содержать реализации методов классов или каких-либо обособленных функций.
+In C++, as in C, apart from the usual code files (.cpp) there are also header files (.h ). Remember that the code from header files is automatically copied into the source code at the preprocessing stage whenever the compiler encounters the `#include` directive.
+Like before, header files are used to declare names to which other parts of the code will refer. In concept of the object-oriented paradigm, in the most common cases a header file declares a class and its methods. The header file must not contain the implementation of the class methods or any separate functions.
 
-На контрасте с C, с C++ также связано и понятия области пространства имен. Пространство имен — это область, в рамках которой определяются различные идентификаторы (имена типов, функций, переменных, и т. д.), ассоциированные друг с другом. Пространства имен используятся для логического объединения кода в тематическую группу и избежания конфликтов одинаковых имен, имеющих различное контекстуальное значение. Намного легче это понять на примере. Например в какой-то обширной программе потребовалось описать два класса для деревев, но разных: в одном случае, например, класс описывает какие-то ботанические характеристики деревьев, как растений, а в другом случае, например, является иерархическим представлением родословной. Вполне ясно, что можно придумать различные имена этим классам, но это необязательно. Из контекста очевидно, что классы относятся к разным сущностям и реализуют разную логику. Можно ввести две разные области имен, например : `Botany` и `Family`, в которые потенциально может входить огромное число других различных классов, ассоциированных с этими понятиями. Выглядеть это будет примерно так:
+In contrast to C, the namespace definition is also related to C++. The namespace is an area within which various identifiers (names of types, functions, variables, etc.) associated with each other are defined. Namespaces are used to logically combine code into a subject group and avoid conflicts of identical names with different contextual meaning. It is much easier to understand this with an example. For instance, in some vast program it was required to describe two different classes for trees: one class describes some botanical characteristics of trees as plants, and another one is a hierarchical representation of a family tree. It is quite clear that you can come up with different names for these classes, but it is not necessary. We can see from the context that the classes refer to different entities and implement different logics. Two different namespaces can be created, for example, `Botany` and `Family`, which could potentially include a huge number of other different classes associated with these concepts. This would look like this:
 
 ```cpp
 namespace Botany
 {
     class Tree
     {
-        // класс представляющий дерево как растение
+        // a class representing a tree as a plant
     }
 }
 ```
@@ -164,77 +172,77 @@ namespace Family
 {
     class Tree
     {
-        // класс представляющий родословное дерево
+        // a class representing a family tree
     }
 }
 ```
 
-Теперь для обращения к этим классам вне соответствующей области имен достаточно использовать следующий синтаксис `<Имя области имен>::<имя>`, например: для обращения к родословному дереву мы получим `Family::Tree`. Области имен могут иметь сложную иерархическую структуру, то есть некоторые из областей имен могут быть определены внутри других, и тогда, при обращении, они должны быть перечислены в порядке вложенности. Чтобы не писать имя области имен каждый раз в случае в случаях, когда о конфликтах не стоит беспокоиться, можно использовать ключевое слово `using`.
+Now it is enough to use the following syntax to refer to these classes outside the corresponding namespace `<Namespace name>::<name>`. For example, to refer to a family tree, we get `Family::Tree`. Namespaces can have a complex hierarchical structure, i.e. some of the namespaces may be defined within others and then, when referenced, they must be listed in the nesting order. To avoid writing the namespace name every time in cases when conflicts are not worth worrying about, you can use the `using` keyword.
 
-# Перегрузка
+# Overloading
 
-Перегрузка - это возможность создавать несколько **различных** функций и методов с одним и тем же именем, но разными аргументами и типами возвращаемого значения. Это может понадобиться, например, если есть потребность создать универсальную функцию. Например, нам требуется создать функцию для сложения двух чисел. Ее прототипом может быть следующая функция:
+Overloading is the ability to create several **different** functions and methods with the same name, but with different arguments and return value types. You may need to do this if you want to create a universal function. For example, we want to create a function for adding two numbers. Its prototype could be the following function:
 
 ```cpp
 int sum(int a, int b);
 ```
 
-В C приходилось создавать отдельные реализации функций для различных типов, например:
+In C, you had to create separate implementations of functions for different types, for example:
 
 ```c
 int sum_integer(int a, int b);
 double sum_double(double a, double b);
 ```
 
-Но в C++ появилась возможность перегружать функции, то есть определять разные функции с одним и тем же именем:
+But in C++ it is possible to overload functions, i.e. to define different functions with the same name:
 
 ```cpp
-int sum(int a, int b);              // будет вызвана в случае, если будут переданы два значения типа int
-double sum(double a, double b);     // будет вызвана в случае, если будут переданы два значения типа double
+int sum(int a, int b);              // will be called if two values of int type are passed
+double sum(double a, double b)    // will be called if two values of double type are passed
 ```
 
-При этом есть возможность определить фукнцию `sum` и для большего числа параметров:
+It is also possible to define a `sum` function for more parameters:
 
 ```cpp
-int sum(int a, int b, int c);        // будет вызвана в случае, если будут переданы три значения типа int
+int sum(int a, int b, int c);        // will be called if three values of int type are passed
 ```
 
-# Перегрузка операторов
+# Operator overloading
 
-Объектно-ориентированное программирование так же сделало возможным перегрузку операторов. Для любого нового класса может быть определен любой стандартный оператор (бинарный или унарный). Например умножение. Возникла потребность определить умножение объекта на матрицу не через функцию `mult(Matrix, Matrix)`, а через оператор `*`. Это бинарный оператор, левая и правая части которого представляются матрицами:
+Object-oriented programming has also made operator overloading possible. Any standard operator (binary or unary) can be defined for any new class. For example, multiplication. There is a need to define an object multiplication by a matrix, not through the `mult(Matrix, Matrix)` function, but through the `*` operator. It is a binary operator whose left and right parts are represented by matrices:
 
 ```cpp
 Matrix operator*(Matrix& x);
 ``` 
 
-Умножение матрицы на число также может быть определено через тот же самый оператор, но в методе с другой сигнатурой, например:
+Multiplication of a matrix by a number can also be defined through the same operator, but in a method with a different signature, e.g:
 
 ```cpp
 Matrix operator*(double x);
 ``` 
 
-Внимание! Этот метод будет срабатывать только в случае, если матрица умножается на число (именно в таком порядке). Это связано с тем, что любой бинарный оператор в C++ раскрывается как оператор между первым и вторым операндом, при этом выполняется реализация того оператора, которая объявлена у первого операнда. Переменная с типом double "не знает" о том, как производится умножения на матрицу. Решить эту проблему можно следующим образом. Использовать оператор с двумя аргументами, но определить его **вне класса**. Тогда аргументы будут восприниматься как соответствующие операнды. В таком случае, придется сделать две копии перегруженного оператора с различным порядком аргументов, например:
+Warning! This method will only work if the matrix is multiplied by a number (in that order). This is because any binary operator in C++ is exposed as an operator between the first and the second operand, and the implementation of the operator that is declared with the first operand is executed. A variable of the double type "doesn't know" how multiplication by a matrix is done. This can be solved as follows. Use an operator with two arguments, but define it **outside the class**. Then the arguments will be treated as corresponding operands. In that case, you will have to make two copies of the overloaded operator with a different order of arguments, e.g:
 
 ```cpp
 Matrix operator*(double, Matrix&);
 Matrix operator*(Matrix&, double);
 ```
 
-Для того, чтобы связать эти функции с классом Matrix, достаточно определить указанные операторы как **дружественные** уже **внутри класса** следующим образом:
+To associate these functions with the Matrix class, simply define the specified operators as **friendly** already **inside the class** as follows:
 
 ```cpp
 friend Matrix operator*(double, Matrix&);
 friend Matrix operator*(double, Matrix&);
 ```
 
-Перегружая операторы, стоит всегда помнить следующие правила:
+When overloading operators, it is always worth remembering the following rules:
 
-- Нельзя перегрузить несуществующие в C++ операторы.
+- You cannot overload operators that do not exist in C++.
 
-- Нельзя перегрузить операторы, если ни один из участвующих в нем операндов не является переменной пользовательского типа;
+- You cannot overload operators if none of the operands involved is a user type variable;
 
-- При перегрузке операторов остается установленный в C++ приоритет для этой операции и на это нельзя повлиять;
+-When operators are overloaded, the priority set in C++ for that operation remains and cannot be affected;
 
-- Нельзя изменить количество операндов, предусмотренных оператором.
+- You cannot change the number of operands provided by the operator.
 
-Это и называется перегрузкой оператора - использование нескольких различных реализаций оператора в зависимости от подаваемой сигнатуры. 
+So, that’s what the operator overloading is: using several different implementations of an operator depending on the given signature.
