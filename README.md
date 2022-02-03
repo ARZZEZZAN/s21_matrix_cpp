@@ -121,7 +121,7 @@ Apart from those operations, you also need to implement constructors and destruc
 | `S21Matrix()` | A basic constructor that initialises a matrix of some predefined dimension |  
 | `S21Matrix(int rows, int cols) ` | Parametrized constructor with number of rows and columns |
 | `S21Matrix(const S21Matrix& other)` | Copy constructor |
-| `S21Matrix(const S21Matrix&& other)` | Move constructor |
+| `S21Matrix(S21Matrix&& other)` | Move constructor |
 | `~S21Matrix()` | Destructor |
 
 And you also need to overload the following operators, partly corresponding to the operations above:
@@ -144,13 +144,13 @@ And you also need to overload the following operators, partly corresponding to t
 ## Part 1. Implementation of the s21_matrix_oop.h library functions
 
 - The program must be developed in C++ language of C++20 standard
-  -The program code must be located in the src folder
+- The program code must be located in the src folder
 - Implement the matrix as an S21Matrix class
 - Use only the `matrix`, `rows` and `columns` fields as private
-- Implement the access to private fields via accessor and mutator
+- Implement the access to private fields `rows` and `columns` via accessor and mutator
 - Make it as a static library (with s21_matrix_oop.h header file)
 - Implement the operations described [above](#matrix-operations)
-- Overload the operators according to the table in the chapter [above] (#matrix-operations)
-  -Prepare full coverage of library functions code with unit-tests using the GTest library
-  -Provide a Makefile for building the library and tests (with targets all, clean, test, s21_matrix_oop.a)
+- Overload the operators according to the table in the chapter [above](#matrix-operations)
+- Prepare full coverage of library functions code with unit-tests using the GTest library
+- Provide a Makefile for building the library and tests (with targets all, clean, test, s21_matrix_oop.a)
 
