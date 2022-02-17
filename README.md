@@ -37,7 +37,7 @@ John is known for his technological and algorithmic ideas and tricks, which made
 *-- We invited you to this party for a reason. The whole team is working on a new method of building shadows in a scene, and your department, in particular, has been appointed by John to implement a very fast and optimised library of all sorts of matrix transformations on which the entire mathematical logic of the algorithm will be based. Vectors and matrices, transpose and SRT conversions, and many other mathematical objects and operations that are used in computer graphics.*
 *For a correct and considered transition to the new method, we need a significant and impressive performance changes, and you will be in charge of it! Please remember that the whole work must be done in a modern OOP style to achieve maximum code quality!*
 
-*- Well, my team and I would be… um… happy to help you.*
+*- Well, I would be… um… happy to help you.*
 
 *-- Perfect! Who knows, maybe……..*
 
@@ -135,7 +135,7 @@ And you also need to overload the following operators, partly corresponding to t
 | `=`  | Assignment of values from one matrix to another one | |
 | `+=`  | Addition assignment (`sum_matrix`) | different matrix dimensions |
 | `-=`  | Difference assignment (`sub_matrix`) | different matrix dimensions |
-| `*=`  | Multiplication assignment (`mul_matrix`/`mul_number``) | the number of columns of the first matrix does not equal the number of rows of the second matrix |
+| `*=`  | Multiplication assignment (`mul_matrix`/`mul_number`) | the number of columns of the first matrix does not equal the number of rows of the second matrix |
 | `(int i, int j)`  | Indexation by matrix elements (row, column) | index is outside the matrix |
 
 
@@ -145,7 +145,7 @@ And you also need to overload the following operators, partly corresponding to t
 
 - The program must be developed in C++ language of C++20 standard
 - The program code must be located in the src folder
-- Implement the matrix as an S21Matrix class
+- Implement the matrix as an `S21Matrix` class
 - Use only the `matrix`, `rows` and `columns` fields as private
 - Implement the access to private fields `rows` and `columns` via accessor and mutator
 - Make it as a static library (with s21_matrix_oop.h header file)
