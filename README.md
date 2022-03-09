@@ -20,6 +20,8 @@ The russian version of the task can be found in the repository.
 
 ## Chapter I
 
+![s21_matrix](misc/images/s21_matrix.png)
+
 Planet Earth, USA, Texas, Dallas County, 1705 Matthew Street, 20 September, 2000.
 
 *-- Our CEO has such a wonderful country house! There is everything to make ideas come true. A veranda facing a huge swimming pool on the lawn complete the image of a passionate and intelligent person.*
