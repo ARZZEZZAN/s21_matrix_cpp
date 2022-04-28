@@ -148,7 +148,7 @@ And you also need to overload the following operators, partly corresponding to t
 
 ## Part 1. Implementation of the s21_matrix_oop.h library functions
 
-- The program must be developed in C++ language of C++17 standard
+- The program must be developed in C++ language of C++17 standard using gcc compiler
 - The program code must be located in the src folder
 - Implement the matrix as an `S21Matrix` class
 - Use only the `matrix`, `rows` and `columns` fields as private
