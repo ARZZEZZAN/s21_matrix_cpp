@@ -245,4 +245,86 @@ When overloading operators, it is always worth remembering the following rules:
 
 - You cannot change the number of operands provided by the operator.
 
-So, that’s what the operator overloading is: using several different implementations of an operator depending on the given signature.
+So, that’s what the operator overloading is: using several different implementations of an operator depending on the given signature. 
+
+# The rule of five
+
+`The rule of five` says that in general, if there is a need to independently determine one of the operations of copying, moving or destroying an object, then most likely for correct operation it will be necessary to implement:
+
+- Destructor
+- Copy Constructor
+- Copy assignment operator
+- Move constructor
+- Move assignment operator
+
+Example of the rule of five:
+
+```
+#include <cstring>
+
+class RFive
+{
+private:
+    char* cstring;
+
+public:
+    // Constructor with initialization list and body
+    RFive(const char* arg)
+    : cstring(new char[std::strlen(arg)+1])
+    {
+        std::strcpy(cstring, arg);
+    }
+
+    // Destructor
+    ~RFive()
+    {
+        delete[] cstring;
+    }
+
+    // Copy Constructor
+    RFive(const RFive& other)
+    {
+        cstring = new char[std::strlen(other.cstring) + 1];
+        std::strcpy(cstring, other.cstring);
+    }
+
+    // Move Constructor, noexcept - for optimization when using standard containers
+    RFive(RFive&& other) noexcept 
+    {
+        cstring = other.cstring;
+        other.cstring = nullptr;
+    }
+
+    // Copy assignment operator
+    RFive& operator=(const RFive& other) 
+    {
+        if (this == &other)
+            return *this;
+
+        char* tmp_cstring = new char[std::strlen(other.cstring) + 1];
+        std::strcpy(tmp_cstring, other.cstring);
+        delete[] cstring;
+        cstring = tmp_cstring;
+        return *this;
+    }
+
+    // Move assignment operator
+    RFive& operator=(RFive&& other) noexcept
+    {
+        if (this == &other)
+            return *this;
+
+        delete[] cstring;
+        cstring = other.cstring;
+        other.cstring = nullptr;
+        return *this;
+    }
+
+//  You can also replace both assignment operators with the following operator
+//  RFive& operator=(RFive other)
+//  {
+//      std::swap(cstring, other.cstring);
+//      return *this;
+//  }
+};
+```

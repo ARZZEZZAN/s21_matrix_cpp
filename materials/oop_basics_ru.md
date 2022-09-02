@@ -238,3 +238,85 @@ friend Matrix operator*(double, Matrix&);
 - Нельзя изменить количество операндов, предусмотренных оператором.
 
 Это и называется перегрузкой оператора - использование нескольких различных реализаций оператора в зависимости от подаваемой сигнатуры. 
+
+# Правило пяти
+
+`Правило пяти` говорит о том, что в общем случае, если возникла необходимость самостоятельного определения одной из операций копирования, перемещения или разрушения объекта, то скорее всего для корректной работы нужно будет реализовать:
+
+- Деструктор
+- Конструктор копирования
+- Оператор присваивания копированием
+- Конструктор перемещения
+- Оператор присваивания перемещением
+
+Пример правила пяти:
+
+```
+#include <cstring>
+
+class RFive
+{
+private:
+    char* cstring;
+
+public:
+    // Конструктор со списком инициализации и телом
+    RFive(const char* arg)
+    : cstring(new char[std::strlen(arg)+1])
+    {
+        std::strcpy(cstring, arg);
+    }
+
+    // Деструктор
+    ~RFive()
+    {
+        delete[] cstring;
+    }
+
+    // Конструктор копирования
+    RFive(const RFive& other)
+    {
+        cstring = new char[std::strlen(other.cstring) + 1];
+        std::strcpy(cstring, other.cstring);
+    }
+
+    // Конструктор перемещения, noexcept - для оптимизации при использовании стандартных контейнеров
+    RFive(RFive&& other) noexcept 
+    {
+        cstring = other.cstring;
+        other.cstring = nullptr;
+    }
+
+    // Оператор присваивания копированием (copy assignment)
+    RFive& operator=(const RFive& other) 
+    {
+        if (this == &other)
+            return *this;
+
+        char* tmp_cstring = new char[std::strlen(other.cstring) + 1];
+        std::strcpy(tmp_cstring, other.cstring);
+        delete[] cstring;
+        cstring = tmp_cstring;
+        return *this;
+    }
+
+    // Оператор присваивания перемещением (move assignment)
+    RFive& operator=(RFive&& other) noexcept
+    {
+        if (this == &other)
+            return *this;
+
+        delete[] cstring;
+        cstring = other.cstring;
+        other.cstring = nullptr;
+        return *this;
+    }
+
+//  Также можно заменить оба оператора присваивания следующим оператором
+//  RFive& operator=(RFive other)
+//  {
+//      std::swap(cstring, other.cstring);
+//      return *this;
+//  }
+};
+```
