@@ -1,8 +1,5 @@
 # s21_matrix+
 
-> При старте работы над проектом просим вас постараться хронометрировать время работы над проектом.
-> По завершении работы над проектом просим вас ответить на два вопроса [в этом опросе](https://forms.gle/Uwz3vJRbKduQyeN88)
-
 Implementation of the s21_matrix_oop.h library.
 
 The russian version of the task can be found in the repository.
@@ -160,3 +157,5 @@ And you also need to overload the following operators, partly corresponding to t
 - Prepare full coverage of library functions code with unit-tests using the GTest library
 - Provide a Makefile for building the library and tests (with targets all, clean, test, s21_matrix_oop.a)
 
+
+💡 [Tap here](https://forms.yandex.ru/u/635a7ff102848f1806c579e3/) **to leave your feedback on the project**. Pedago Team really tries to make your educational experience better.
