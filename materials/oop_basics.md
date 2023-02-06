@@ -152,7 +152,7 @@ Matrix (Matrix&);       // copy constructor
 Matrix (Matrix&&);      // move constructor
 ```
 
-In C++, as in C, apart from the usual code files (.cpp) there are also header files (.h ). Remember that the code from header files is automatically copied into the source code at the preprocessing stage whenever the compiler encounters the `#include` directive.
+In C++, as in C, apart from the usual code files (.cpp/.cc) there are also header files (.h ). Remember that the code from header files is automatically copied into the source code at the preprocessing stage whenever the compiler encounters the `#include` directive.
 Like before, header files are used to declare names to which other parts of the code will refer. In concept of the object-oriented paradigm, in the most common cases a header file declares a class and its methods. The header file must not contain the implementation of the class methods or any separate functions.
 
 In contrast to C, the namespace definition is also related to C++. The namespace is an area within which various identifiers (names of types, functions, variables, etc.) associated with each other are defined. Namespaces are used to logically combine code into a subject group and avoid conflicts of identical names with different contextual meaning. It is much easier to understand this with an example. For instance, in some vast program it was required to describe two different classes for trees: one class describes some botanical characteristics of trees as plants, and another one is a hierarchical representation of a family tree. It is quite clear that you can come up with different names for these classes, but it is not necessary. We can see from the context that the classes refer to different entities and implement different logics. Two different namespaces can be created, for example, `Botany` and `Family`, which could potentially include a huge number of other different classes associated with these concepts. This would look like this:
@@ -232,7 +232,7 @@ To associate these functions with the Matrix class, simply define the specified 
 
 ```cpp
 friend Matrix operator*(double, Matrix&);
-friend Matrix operator*(double, Matrix&);
+friend Matrix operator*(Matrix&, double);
 ```
 
 When overloading operators, it is always worth remembering the following rules:
@@ -241,7 +241,7 @@ When overloading operators, it is always worth remembering the following rules:
 
 - You cannot overload operators if none of the operands involved is a user type variable;
 
--When operators are overloaded, the priority set in C++ for that operation remains and cannot be affected;
+- When operators are overloaded, the priority set in C++ for that operation remains and cannot be affected;
 
 - You cannot change the number of operands provided by the operator.
 
