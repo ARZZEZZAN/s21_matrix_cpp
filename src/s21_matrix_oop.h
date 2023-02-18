@@ -9,6 +9,10 @@ class S21Matrix {
   // Attributes
   int rows_, cols_;  // Rows and columns
   double** matrix_;  // Pointer to the memory where the matrix is allocated
+  void CreateMatrix(int rows, int columns);
+  void RemoveMatrix();
+  void Copy(const S21Matrix& other);
+  double GetDeterminant();
 
  public:
   int getRows() { return rows_; }
@@ -23,12 +27,7 @@ class S21Matrix {
   S21Matrix(S21Matrix&& other);
   ~S21Matrix();  // Destructor
 
-  void CreateMatrix(int rows, int columns);
-  void RemoveMatrix();
-  void Copy(const S21Matrix& other);
-
   bool EqMatrix(const S21Matrix& other);
-
   void SumMatrix(const S21Matrix& other);
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double num);
@@ -37,7 +36,6 @@ class S21Matrix {
   S21Matrix Transpose();
   S21Matrix CalcComplements();
   double Determinant();
-  double GetDeterminant();
   void GetMatrix(int row, int col, const S21Matrix& tmp);
   // void s21_get_matrix(int row, int col, matrix_t* A, matrix_t* result);
   S21Matrix InverseMatrix();
