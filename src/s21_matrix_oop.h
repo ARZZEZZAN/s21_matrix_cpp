@@ -13,6 +13,7 @@ class S21Matrix {
   void RemoveMatrix();
   void Copy(const S21Matrix& other);
   double GetDeterminant();
+  void GetMatrix(int row, int col, const S21Matrix& tmp);
 
  public:
   int getRows() { return rows_; }
@@ -36,8 +37,6 @@ class S21Matrix {
   S21Matrix Transpose();
   S21Matrix CalcComplements();
   double Determinant();
-  void GetMatrix(int row, int col, const S21Matrix& tmp);
-  // void s21_get_matrix(int row, int col, matrix_t* A, matrix_t* result);
   S21Matrix InverseMatrix();
 
   S21Matrix operator+=(const S21Matrix& other);
