@@ -18,7 +18,6 @@ class S21Matrix {
  public:
   int getRows() { return rows_; }
   int getCols() { return cols_; }
-  double** getMatrix() { return matrix_; }
   void setElement(int row, int col, double value) { matrix_[row][col] = value; }
   double outputElement(int row, int col) { return matrix_[row][col]; }
   S21Matrix();  // Default constructor
