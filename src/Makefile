@@ -11,7 +11,7 @@ s21_matrix_oop.a: build
 
 clean:
 	rm -rf *.o *.out s21_matrix_oop.a unit_test
-	rm -rf *.gcda *.gcno report gcov_report.* gcov_report
+	rm -rf *.gcda *.gcno report gcov_report.* gcov_report *.info
 
 rebuild:
 	make clean
@@ -26,12 +26,12 @@ clang:
 	rm .clang-format
 
 test: s21_matrix_oop.a ./unit_tests/unit_tests.C
-	gcc -lgtest -lstdc++ -std=c++17 s21_matrix_oop.a ./unit_tests/unit_tests.C -o unit_test
+	gcc -lgtest -lstdc++ -std=c++17 --coverage s21_matrix_oop.a ./unit_tests/unit_tests.C -o unit_test
 	./unit_test
 
-gcov_report:
+gcov_report: clean
 	gcc  --coverage ./unit_tests/unit_tests.C s21_matrix_oop.C -o gcov_report -lgtest -lstdc++
 	./gcov_report
-	lcov -t "./gcov_report" -o gcov_report.info -c -d .
-	genhtml -o report gcov_report.info
+	lcov -t "stest" -o s21_test.info -c -d .
+	genhtml -o report s21_test.info
 	open ./report/index.html
