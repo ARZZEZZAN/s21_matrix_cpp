@@ -336,11 +336,12 @@ S21Matrix S21Matrix::InverseMatrix() {
   }
   S21Matrix result(this->rows_, this->cols_);
   if (this->rows_ == 1) {
-    result.setElement(0, 0, 1 / determinant);
+    result.setElement(0, 0, 1.0 / determinant);
   } else {
     S21Matrix tmp = this->CalcComplements();
-    S21Matrix result = tmp.Transpose();
+    result = tmp.Transpose();
     result.MulNumber(1 / determinant);
   }
+
   return result;
 }

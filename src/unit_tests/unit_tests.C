@@ -186,7 +186,33 @@ TEST(Test, operator_minus) {
   A = B - B;
   EXPECT_EQ(1, A == B);
 }
+TEST(Test, inverst_test) {
+  S21Matrix result(3, 3);
+  result(0, 0) = 0;
+  result(0, 1) = 1;
+  result(0, 2) = -0.75;
+  result(1, 0) = -0.5;
+  result(1, 1) = 3;
+  result(1, 2) = -2;
+  result(2, 0) = 0.5;
+  result(2, 1) = -3.5;
+  result(2, 2) = 2.5;
 
+  S21Matrix R(3, 3);
+  R(0, 0) = 8;
+  R(0, 1) = 2;
+  R(0, 2) = 4;
+  R(1, 0) = 4;
+  R(1, 1) = 6;
+  R(1, 2) = 6;
+  R(2, 0) = 4;
+  R(2, 1) = 8;
+  R(2, 2) = 8;
+
+  S21Matrix result_inverse(3, 3);
+  result_inverse = R.InverseMatrix();
+  EXPECT_EQ(1, result == result_inverse);
+}
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
