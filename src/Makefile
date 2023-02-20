@@ -17,8 +17,8 @@ rebuild:
 	make clean
 	make build
 
-leaks: 
-	leaks -atExit -- ./a.out
+leaks: test
+	leaks -atExit -- ./unit_test
 
 clang:
 	cp ../materials/linters/.clang-format ../src/.clang-format

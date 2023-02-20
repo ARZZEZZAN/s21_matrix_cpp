@@ -13,8 +13,14 @@ S21Matrix::S21Matrix(S21Matrix&& other) {
   this->Copy(other);
   other.RemoveMatrix();
 }
-S21Matrix::~S21Matrix() { this->RemoveMatrix(); }
-
+S21Matrix::~S21Matrix() {
+  if (this->matrix_ != nullptr) {
+    this->RemoveMatrix();
+  }
+}
+/// @brief Создание матрицы
+/// @param rows Строки
+/// @param columns Столбцы
 void S21Matrix::CreateMatrix(int rows, int columns) {
   if (rows < 1 || columns < 1) {
     throw std::length_error(
@@ -34,25 +40,35 @@ void S21Matrix::CreateMatrix(int rows, int columns) {
         delete[] this->matrix_[j];
       }
       delete[] this->matrix_;
-      this->matrix_ = nullptr;
-      this->rows_ = 0;
-      this->cols_ = 0;
+      this->NullingHandler();
       throw std::bad_alloc();
     }
   }
 }
-
+/// @brief Удаление матрицы, а также зануление
 void S21Matrix::RemoveMatrix() {
   if (this->matrix_ != nullptr) {
     for (int i = 0; i < this->rows_; i++) {
       delete[] this->matrix_[i];
     }
     delete[] this->matrix_;
-    this->matrix_ = nullptr;
-    this->rows_ = 0;
-    this->cols_ = 0;
+    this->NullingHandler();
   }
 }
+/// @brief Зануление матрицы, строк и столбцов
+void S21Matrix::NullingHandler() {
+  this->matrix_ = nullptr;
+  this->rows_ = 0;
+  this->cols_ = 0;
+}
+/// @brief Изменение размера строк в матрице
+/// @param rows Количество строк
+void S21Matrix::SetRows(int rows) {}
+/// @brief Изменение размера столбцов в матрице
+/// @param rows Количество стобцов
+void S21Matrix::SetCols(int cols) {}
+/// @brief Копирование матрицы
+/// @param other Источник копировапния
 void S21Matrix::Copy(const S21Matrix& other) {
   this->CreateMatrix(other.rows_, other.cols_);
   for (int i = 0; i < this->rows_; i++) {
@@ -277,6 +293,10 @@ double S21Matrix::GetDeterminant() {
   }
   return result;
 }
+/// @brief Получение матрицы для вычисления детерминанта
+/// @param row Строки
+/// @param col Столбцы
+/// @param tmp Матрица записи
 void S21Matrix::GetMatrix(int row, int col, const S21Matrix& tmp) {
   int m_row = 0;
   int m_col = 0;
@@ -295,6 +315,8 @@ void S21Matrix::GetMatrix(int row, int col, const S21Matrix& tmp) {
     m_row++;
   }
 }
+/// @brief Вычисление алгебраического дополнения
+/// @return result
 S21Matrix S21Matrix::CalcComplements() {
   if ((this->matrix_ == nullptr) && (this->rows_ < 1)) {
     throw std::length_error(
@@ -317,6 +339,8 @@ S21Matrix S21Matrix::CalcComplements() {
   }
   return result;
 }
+/// @brief Вычисление инверсии матрицы
+/// @return result
 S21Matrix S21Matrix::InverseMatrix() {
   if ((this->matrix_ == nullptr) && (this->rows_ < 1)) {
     throw std::length_error(
@@ -345,3 +369,6 @@ S21Matrix S21Matrix::InverseMatrix() {
 
   return result;
 }
+// killeral@un-k4 src % CK_FORK=no valgrind --trace-children=yes --track-fds=yes
+// --track-origins=yes --leak-check=full --show-leak-kinds=all --verbose
+// --log-file=RESULT_VALGRIND.txt ./unit_test

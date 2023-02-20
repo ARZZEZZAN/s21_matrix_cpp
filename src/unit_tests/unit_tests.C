@@ -45,20 +45,20 @@ TEST(S21MatrixTest, SumMatrixTest) {
   S21Matrix b(2, 2);
   S21Matrix expected(2, 2);
 
-  a.setElement(0, 0, 1);
-  a.setElement(0, 1, 2);
-  a.setElement(1, 0, 3);
-  a.setElement(1, 1, 4);
+  a(0, 0) = 1;
+  a(0, 1) = 2;
+  a(1, 0) = 3;
+  a(1, 1) = 4;
 
-  b.setElement(0, 0, 5);
-  b.setElement(0, 1, 6);
-  b.setElement(1, 0, 7);
-  b.setElement(1, 1, 8);
+  b(0, 0) = 5;
+  b(0, 1) = 6;
+  b(1, 0) = 7;
+  b(1, 1) = 8;
 
-  expected.setElement(0, 0, 6);
-  expected.setElement(0, 1, 8);
-  expected.setElement(1, 0, 10);
-  expected.setElement(1, 1, 12);
+  expected(0, 0) = 6;
+  expected(0, 1) = 8;
+  expected(1, 0) = 10;
+  expected(1, 1) = 12;
 
   a.SumMatrix(b);
   EXPECT_TRUE(a == expected);
@@ -68,20 +68,20 @@ TEST(S21MatrixTest, SubMatrixTest) {
   S21Matrix b(2, 2);
   S21Matrix expected(2, 2);
 
-  a.setElement(0, 0, 4);
-  a.setElement(0, 1, 4);
-  a.setElement(1, 0, 6);
-  a.setElement(1, 1, 6);
+  a(0, 0) = 4;
+  a(0, 1) = 4;
+  a(1, 0) = 6;
+  a(1, 1) = 6;
 
-  b.setElement(0, 0, 2);
-  b.setElement(0, 1, 2);
-  b.setElement(1, 0, 3);
-  b.setElement(1, 1, 3);
+  b(0, 0) = 2;
+  b(0, 1) = 2;
+  b(1, 0) = 3;
+  b(1, 1) = 3;
 
-  expected.setElement(0, 0, 2);
-  expected.setElement(0, 1, 2);
-  expected.setElement(1, 0, 3);
-  expected.setElement(1, 1, 3);
+  expected(0, 0) = 2;
+  expected(0, 1) = 2;
+  expected(1, 0) = 3;
+  expected(1, 1) = 3;
 
   a.SubMatrix(b);
   EXPECT_TRUE(a == expected);
@@ -92,20 +92,20 @@ TEST(S21MatrixTest, MulMatrixTest) {
   S21Matrix b(2, 2);
   S21Matrix expected(2, 2);
 
-  a.setElement(0, 0, 1);
-  a.setElement(0, 1, 2);
-  a.setElement(1, 0, 3);
-  a.setElement(1, 1, 4);
+  a(0, 0) = 1;
+  a(0, 1) = 2;
+  a(1, 0) = 3;
+  a(1, 1) = 4;
 
-  b.setElement(0, 0, 5);
-  b.setElement(0, 1, 6);
-  b.setElement(1, 0, 7);
-  b.setElement(1, 1, 8);
+  b(0, 0) = 5;
+  b(0, 1) = 6;
+  b(1, 0) = 7;
+  b(1, 1) = 8;
 
-  expected.setElement(0, 0, 19);
-  expected.setElement(0, 1, 22);
-  expected.setElement(1, 0, 43);
-  expected.setElement(1, 1, 50);
+  expected(0, 0) = 19;
+  expected(0, 1) = 22;
+  expected(1, 0) = 43;
+  expected(1, 1) = 50;
 
   a.MulMatrix(b);
 
@@ -115,15 +115,15 @@ TEST(S21MatrixTest, MulNumberTest) {
   S21Matrix a(2, 2);
   S21Matrix expected(2, 2);
 
-  a.setElement(0, 0, 1);
-  a.setElement(0, 1, 2);
-  a.setElement(1, 0, 3);
-  a.setElement(1, 1, 4);
+  a(0, 0) = 1;
+  a(0, 1) = 2;
+  a(1, 0) = 3;
+  a(1, 1) = 4;
 
-  expected.setElement(0, 0, 2);
-  expected.setElement(0, 1, 4);
-  expected.setElement(1, 0, 6);
-  expected.setElement(1, 1, 8);
+  expected(0, 0) = 2;
+  expected(0, 1) = 4;
+  expected(1, 0) = 6;
+  expected(1, 1) = 8;
 
   a.MulNumber(2);
 
@@ -133,15 +133,15 @@ TEST(S21MatrixTest, EqTest) {
   S21Matrix a(2, 2);
   S21Matrix b(2, 2);
 
-  a.setElement(0, 0, 1);
-  a.setElement(0, 1, 2);
-  a.setElement(1, 0, 3);
-  a.setElement(1, 1, 4);
+  a(0, 0) = 1;
+  a(0, 1) = 2;
+  a(1, 0) = 3;
+  a(1, 1) = 4;
 
-  b.setElement(0, 0, 1);
-  b.setElement(0, 1, 2);
-  b.setElement(1, 0, 3);
-  b.setElement(1, 1, 4);
+  b(0, 0) = 1;
+  b(0, 1) = 2;
+  b(1, 0) = 3;
+  b(1, 1) = 4;
 
   EXPECT_TRUE(a.EqMatrix(b));
 }
