@@ -395,6 +395,49 @@ TEST(Test, Error6) {
   S21Matrix A(1, 2);
   EXPECT_THROW(A.InverseMatrix(), std::length_error);
 }
+TEST(Test, Error7) {
+  S21Matrix A;
+  S21Matrix B;
+  EXPECT_THROW(A.SumMatrix(B), std::length_error);
+}
+TEST(Test, Error8) {
+  S21Matrix A;
+  S21Matrix B;
+  EXPECT_THROW(A.SubMatrix(B), std::length_error);
+}
+TEST(Test, SetColumnsError) {
+  S21Matrix A;
+  EXPECT_THROW(A.SetColumns(0), std::length_error);
+}
+TEST(Test, SetRowsError) {
+  S21Matrix A;
+  EXPECT_THROW(A.SetRows(0), std::length_error);
+}
+TEST(Test, SetColumns) {
+  S21Matrix A(1, 1);
+  S21Matrix B(1, 2);
+  A.SetColumns(2);
+  EXPECT_EQ(A.getCols(), B.getCols());
+}
+TEST(Test, SetRows) {
+  S21Matrix A(1, 1);
+  S21Matrix B(2, 1);
+  A.SetRows(2);
+  EXPECT_EQ(A.getRows(), B.getRows());
+}
+TEST(Test, operator_error) {
+  S21Matrix B(2, 2);
+  EXPECT_THROW((B(0, 5) = 2), std::length_error);
+}
+TEST(Test, OperatorConst) {
+  const S21Matrix A(1, 1);
+  A(0, 0) = 1;
+  EXPECT_EQ(A(0, 0), 1);
+}
+TEST(Test, OperatorConstError) {
+  const S21Matrix A(1, 1);
+  EXPECT_THROW((A(0, 5) = 1), std::length_error);
+}
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

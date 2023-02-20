@@ -9,7 +9,8 @@ class S21Matrix {
   int getRows() { return rows_; }
   int getCols() { return cols_; }
   double** getMatrix() { return matrix_; }
-  void setElement(int row, int col, double value) { matrix_[row][col] = value; }
+  // void setElement(int row, int col, double value) { matrix_[row][col] =
+  // value; }
   void SetRows(int rows);
   void SetColumns(int cols);
 

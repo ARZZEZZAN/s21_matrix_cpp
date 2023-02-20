@@ -409,7 +409,7 @@ S21Matrix S21Matrix::InverseMatrix() {
   }
   S21Matrix result(this->rows_, this->cols_);
   if (this->rows_ == 1) {
-    result.setElement(0, 0, 1.0 / determinant);
+    result.matrix_[0][0] = 1.0 / this->matrix_[0][0];
   } else {
     S21Matrix tmp = this->CalcComplements();
     result = tmp.Transpose();
@@ -418,6 +418,3 @@ S21Matrix S21Matrix::InverseMatrix() {
 
   return result;
 }
-// killeral@un-k4 src % CK_FORK=no valgrind --trace-children=yes --track-fds=yes
-// --track-origins=yes --leak-check=full --show-leak-kinds=all --verbose
-// --log-file=RESULT_VALGRIND.txt ./unit_test
