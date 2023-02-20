@@ -63,10 +63,50 @@ void S21Matrix::NullingHandler() {
 }
 /// @brief Изменение размера строк в матрице
 /// @param rows Количество строк
-void S21Matrix::SetRows(int rows) {}
+void S21Matrix::SetRows(int rows) {
+  int tmpRows = 0;
+  if (rows < 1) {
+    throw std::length_error(
+        "Oh, no! Your matrix is empty or maybe problem with rows and "
+        "columns! "
+        "Try again man and without any tricks!");
+  }
+  S21Matrix tmp(rows, this->cols_);
+  if (this->rows_ < rows) {
+    tmpRows = this->rows_;
+  } else {
+    tmpRows = rows;
+  }
+  for (int i = 0; i < tmpRows; i++) {
+    for (int j = 0; j < this->cols_; j++) {
+      tmp.matrix_[i][j] = this->matrix_[i][j];
+    }
+  }
+  *this = tmp;
+}
 /// @brief Изменение размера столбцов в матрице
 /// @param rows Количество стобцов
-void S21Matrix::SetCols(int cols) {}
+void S21Matrix::SetColumns(int cols) {
+  int tmpCols = 0;
+  if (cols < 1) {
+    throw std::length_error(
+        "Oh, no! Your matrix is empty or maybe problem with rows and "
+        "columns! "
+        "Try again man and without any tricks!");
+  }
+  S21Matrix tmp(this->rows_, cols);
+  if (this->cols_ < cols) {
+    tmpCols = this->cols_;
+  } else {
+    tmpCols = cols;
+  }
+  for (int i = 0; i < this->rows_; i++) {
+    for (int j = 0; j < tmpCols; j++) {
+      tmp.matrix_[i][j] = this->matrix_[i][j];
+    }
+  }
+  *this = tmp;
+}
 /// @brief Копирование матрицы
 /// @param other Источник копировапния
 void S21Matrix::Copy(const S21Matrix& other) {
@@ -96,32 +136,41 @@ S21Matrix S21Matrix::operator*=(const double num) {
 }
 S21Matrix S21Matrix::operator+(const S21Matrix& other) {
   this->SumMatrix(other);
-  return *this;
+  S21Matrix tmp = *this;
+  return tmp;
 }
 S21Matrix S21Matrix::operator-(const S21Matrix& other) {
   this->SubMatrix(other);
-  return *this;
+  S21Matrix tmp = *this;
+  return tmp;
 }
 S21Matrix S21Matrix::operator*(const S21Matrix& other) {
   this->MulMatrix(other);
-  return *this;
+  S21Matrix tmp = *this;
+  return tmp;
 }
 S21Matrix S21Matrix::operator*(double num) {
   this->MulNumber(num);
-  return *this;
+  S21Matrix tmp = *this;
+  return tmp;
 }
 S21Matrix& S21Matrix::operator=(const S21Matrix& other) {
-  if (this->matrix_ != nullptr) {
-    this->RemoveMatrix();
-    this->Copy(other);
-  } else {
-    this->Copy(other);
-  }
+  this->RemoveMatrix();
+  this->Copy(other);
   return *this;
 }
 bool S21Matrix::operator==(const S21Matrix& other) {
   bool tmp = this->EqMatrix(other);
   return tmp;
+}
+double& S21Matrix::operator()(int i, int j) const {
+  if (i > this->rows_ || j > this->cols_ || i < 0 || j < 0) {
+    throw std::length_error(
+        "Oh, no! Your problem with rows and "
+        "columns!"
+        "Try again man and without any tricks!");
+  }
+  return this->matrix_[i][j];
 }
 double& S21Matrix::operator()(int i, int j) {
   if (i > this->rows_ || j > this->cols_ || i < 0 || j < 0) {

@@ -5,23 +5,11 @@
 #include <iostream>
 
 class S21Matrix {
- private:
-  // Attributes
-  int rows_, cols_;  // Rows and columns
-  double** matrix_;  // Pointer to the memory where the matrix is allocated
-  void RemoveMatrix();
-  void NullingHandler();
-  double GetDeterminant();
-  void Copy(const S21Matrix& other);
-  void CreateMatrix(int rows, int columns);
-  void GetMatrix(int row, int col, const S21Matrix& tmp);
-
  public:
   int getRows() { return rows_; }
   int getCols() { return cols_; }
   double** getMatrix() { return matrix_; }
   void setElement(int row, int col, double value) { matrix_[row][col] = value; }
-  double outputElement(int row, int col) { return matrix_[row][col]; }
   void SetRows(int rows);
   void SetColumns(int cols);
 
@@ -55,6 +43,18 @@ class S21Matrix {
   S21Matrix& operator=(const S21Matrix& other);
   bool operator==(const S21Matrix& other);
   double& operator()(int i, int j);
+  double& operator()(int i, int j) const;
+
+ private:
+  // Attributes
+  int rows_, cols_;  // Rows and columns
+  double** matrix_;  // Pointer to the memory where the matrix is allocated
+  void RemoveMatrix();
+  void NullingHandler();
+  double GetDeterminant();
+  void Copy(const S21Matrix& other);
+  void CreateMatrix(int rows, int columns);
+  void GetMatrix(int row, int col, const S21Matrix& tmp);
 };
 
 #endif  // SRC_MATRIX_H_
