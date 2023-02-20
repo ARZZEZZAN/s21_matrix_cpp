@@ -255,6 +255,7 @@ void S21Matrix::MulMatrix(const S21Matrix& other) {
         }
       }
     }
+    this->RemoveMatrix();
     this->Copy(result);
   } else {
     throw std::length_error("Error: matrix size is wrong");
