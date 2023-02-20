@@ -1,10 +1,6 @@
 #include "s21_matrix_oop.h"
 using namespace std;
-S21Matrix::S21Matrix() {
-  this->rows_ = 0;
-  this->cols_ = 0;
-  this->matrix_ = nullptr;
-}
+S21Matrix::S21Matrix() { this->NullingHandler(); }
 S21Matrix::S21Matrix(int rows, int columns) {
   this->CreateMatrix(rows, columns);
 }

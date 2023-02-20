@@ -19,7 +19,6 @@ TEST(S21MatrixTest, Constructor) {
       ASSERT_EQ(mat.getMatrix()[i][j], 0.0);
     }
   }
-
   // Check that an exception is thrown if rows or columns are less than 1
   ASSERT_THROW(S21Matrix mat2(0, 4), std::length_error);
   ASSERT_THROW(S21Matrix mat3(3, -1), std::length_error);
